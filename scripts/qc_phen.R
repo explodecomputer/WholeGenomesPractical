@@ -29,7 +29,7 @@ sum(is.na(covars))
 ########################
 
 
-pdf(file="../images/BMI_distribution.pdf")
+
 	# Plot the distribution of BMI
 	hist(phen$bmi, breaks=100)
 
@@ -41,7 +41,7 @@ pdf(file="../images/BMI_distribution.pdf")
 
 	# And again but Log transforming:
 	qqnorm(log2(phen$bmi))
-dev.off()
+
 
 # Make a new variable which is log transformed BMI
 phen$lbmi <- log2(phen$bmi)
@@ -52,10 +52,10 @@ index <- phen$lbmi < (mean(phen$lbmi) - 4*sd(phen$lbmi)) | phen$lbmi > (mean(phe
 phen$lbmi[index] <- NA
 
 # How does the data look now?
-pdf(file="../images/BMI_distribution_log_no_outliers.pdf")
+
 	hist(phen$lbmi, breaks=100)
 	qqnorm(phen$lbmi)
-dev.off()
+
 
 # BMI is weight / height^2
 # If there is a systematic difference in height between males and females then BMI will have a systematic difference in variance between males and females
@@ -81,16 +81,17 @@ tapply(phen$bmi_adjusted, covars$sex, function(x) mean(x, na.rm=T))
 tapply(phen$bmi_adjusted, covars$sex, function(x) sd(x, na.rm=T))
 
 # Still looks normal
-pdf(file="../images/BMI_distribution_adjusted.pdf")
+
 	hist(phen$bmi_adjusted, breaks=100)
 	qqnorm(phen$bmi_adjusted)
-dev.off()
+
 
 # Scale the phenotype to have mean and sd prior to adjusting for sex
 phen$bmi_adjusted <- phen$bmi_adjusted * sd(phen$lbmi, na.rm=T) + mean(phen$lbmi, na.rm=T)
 
 # Which other covariates are associated with BMI?
-summary(lm(phen$lbmi ~ as.matrix(covars[,-c(1:2)])))
+cov_ <- as.matrix(covars[,-c(1:2)])
+summary(lm(phen$bmi_adjusted ~ cov_))
 
 
 
@@ -103,16 +104,16 @@ summary(lm(phen$lbmi ~ as.matrix(covars[,-c(1:2)])))
 
 
 # CRP distribution
-pdf(file="../images/CRP_distribution.pdf")
+
 	hist(phen$crp, breaks=100)
 	qqnorm(phen$crp)
-dev.off()
+
 
 # log transform
-pdf(file="../images/CRP_distribution_log.pdf")
+
 	hist(log(phen$crp), breaks=100)
 	qqnorm(log(phen$crp))
-dev.off()
+
 
 # Looks like there is one major outlier but log transformation does a good job of making the rest of the samples normally distributed
 

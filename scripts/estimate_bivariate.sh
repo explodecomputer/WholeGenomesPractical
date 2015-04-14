@@ -26,25 +26,25 @@ source ../config
 gcta64 \
 	--grm ../data/geno_qc \
 	--reml-bivar 1 2 \
-	--pheno ../../gwas/data/phen.txt \
-	--qcovar ../../gwas/data/covs.txt \
+	--pheno ../data/phen.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_bmi_crp \
-	--thread-num 8
+	--thread-num 16
 
 # BMI vs hypertension
 gcta64 \
 	--grm ../data/geno_qc \
 	--reml-bivar 1 3 \
-	--pheno ../../gwas/data/phen.txt \
-	--qcovar ../../gwas/data/covs.txt \
+	--pheno ../data/phen.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_bmi_hypertension \
-	--thread-num 8
+	--thread-num 16
 
 # CRP vs hypertension
 gcta64 \
 	--grm ../data/geno_qc \
 	--reml-bivar 2 3 \
-	--pheno ../../gwas/data/phen.txt \
-	--qcovar ../../gwas/data/covs.txt \
+	--pheno ../data/phen.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_crp_hypertension \
-	--thread-num 8
+	--thread-num 16

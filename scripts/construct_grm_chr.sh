@@ -20,10 +20,14 @@ source ../config
 # --maf           Don't use SNPs below this MAF for calculating GRM
 # --out           Where to save output
 
-plink1.90 \
-	--bfile ${datadir}/geno_qc \
-	--make-grm-bin \
-	--maf 0.01 \
-	--out ../data/geno_qc \
-	--thread-num 16
 
+for i in {1..22}
+do
+	plink1.90 \
+		--bfile ${datadir}/geno_qc \
+		--make-grm-bin \
+		--maf 0.01 \
+		--chr ${i} \
+		--out ../data/geno_qc_${i} \
+		--thread-num 16
+done

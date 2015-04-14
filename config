@@ -1,4 +1,4 @@
 #!/bin/bash
 
-workdir=""
-datadir=""
+workdir="/panfs/panasas01/sscm/gh13047/repo/WholeGenomesPractical/scripts"
+datadir="/panfs/panasas01/shared/alspac/deprecated/pelotas_teaching_material/data/genotyped"
