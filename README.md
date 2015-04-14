@@ -69,4 +69,14 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 6. 	In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in `estimate_bivariate.sh` to do this.
 
-7. 	Construct two GRMs, one using chromosomes 1-8 and another using 9-22. Estimate the heritability of each GRM separately and both combined. Do this with and without covariates included. Is the sum of heritabilities for each chromosome the same as that for the entire genome? Use the commands in `grm_partitioning.sh` to do this.
+7.	Under the infinitesimal model we assume that every SNP has an effect and each effect is small. One way we can test this would be to see if larger chromosomes explain more of the variance than smaller chromosomes. We can do this in GCTA by partitioning the genome into 22 chromosomes, and estimating the variance explained by all the SNPs on each chromosome. To do this first make a GRM for each of the 22 chromosomes:
+
+		./construct_grm_chr.sh
+
+	This script creates the 22 GRMs, plus a text file called `geno_qc_chr.mgrm` which lists the locations of each of the GRMs. Now we can estimate the variance attributed to each chromosome:
+
+		./estimate_partition.sh
+
+	Visualise the results by using the `plot_partition.R` script.
+
+8. 	Construct two GRMs, one using chromosomes 1-8 and another using 9-22. Estimate the heritability of each GRM separately and both combined. Do this with and without covariates included. Is the sum of heritabilities for each chromosome the same as that for the entire genome? Use the commands in `estimate_confounding.sh` to do this.

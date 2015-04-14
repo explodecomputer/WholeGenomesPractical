@@ -31,3 +31,14 @@ do
 		--out ../data/geno_qc_${i} \
 		--thread-num 16
 done
+
+
+# Make mgrm file - this is supplied to GCTA to tell it where all the GRM files are that
+# are to be included in the multivariate analysis
+
+echo -e "../data/geno_qc_1" > ../data/geno_qc_chr.mgrm
+for i in {2..22}
+do
+	echo -e "../data/geno_qc_${i}" >> ../data/geno_qc_chr.mgrm
+done
+

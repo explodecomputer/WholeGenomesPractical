@@ -66,9 +66,9 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition1_bmi_covar \
 	--thread-num 8
 
@@ -76,9 +76,9 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition2_bmi_covar \
 	--thread-num 8
 
@@ -86,9 +86,9 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition_bmi_covar \
 	--thread-num 8
 
@@ -97,7 +97,7 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
 	--out ../results/partition1_bmi_nocovar \
 	--thread-num 8
@@ -106,7 +106,7 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
 	--out ../results/partition2_bmi_nocovar \
 	--thread-num 8
@@ -115,7 +115,7 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 1 \
 	--out ../results/partition_bmi_nocovar \
 	--thread-num 8
@@ -126,9 +126,9 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition1_crp_covar \
 	--thread-num 8
 
@@ -136,9 +136,9 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition2_crp_covar \
 	--thread-num 8
 
@@ -146,9 +146,9 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition_crp_covar \
 	--thread-num 8
 
@@ -157,7 +157,7 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
 	--out ../results/partition1_crp_nocovar \
 	--thread-num 8
@@ -166,7 +166,7 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
 	--out ../results/partition2_crp_nocovar \
 	--thread-num 8
@@ -175,7 +175,7 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 2 \
 	--out ../results/partition_crp_nocovar \
 	--thread-num 8
@@ -185,9 +185,9 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition1_hypertension_covar \
 	--thread-num 8
 
@@ -195,9 +195,9 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition2_hypertension_covar \
 	--thread-num 8
 
@@ -205,9 +205,9 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
-	--qcovar ../../gwas/data/covs.txt \
+	--qcovar ../data/covs.txt \
 	--out ../results/partition_hypertension_covar \
 	--thread-num 8
 
@@ -216,7 +216,7 @@ gcta64 \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
 	--out ../results/partition1_hypertension_nocovar \
 	--thread-num 8
@@ -225,7 +225,7 @@ gcta64 \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
 	--out ../results/partition2_hypertension_nocovar \
 	--thread-num 8
@@ -234,7 +234,7 @@ gcta64 \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
-	--pheno ../../gwas/data/phen.txt \
+	--pheno ../data/phen.txt \
 	--mpheno 3 \
 	--out ../results/partition_hypertension_nocovar \
 	--thread-num 8

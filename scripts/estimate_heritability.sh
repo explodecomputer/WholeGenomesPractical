@@ -22,7 +22,7 @@ source ../config
 # --qcovar        Location of covariates file
 # --out           Where to save output
 # --thread        How many threads to use
-
+# --prevalence    The prevalence of the disease in the population
 
 
 # BMI
@@ -86,3 +86,18 @@ gcta64 \
 	--mpheno 3 \
 	--out ../results/hypertension_nocovar \
 	--thread-num 16
+
+
+
+# Hypertension - liability scale
+gcta64 \
+	--grm ../data/geno_qc \
+	--reml \
+	--reml-no-lrt \
+	--pheno ../data/phen.txt \
+	--mpheno 3 \
+	--qcovar ../data/covs.txt \
+	--prevalence 0.3 \
+	--out ../results/hypertension_covar_liability \
+	--thread-num 16
+

@@ -60,4 +60,5 @@ gcta64 \
 	--mpheno 3 \
 	--qcovar ../data/covs.txt \
 	--out ../results/hypertension_partition \
+	--prevalence 0.30 \
 	--thread-num 16
