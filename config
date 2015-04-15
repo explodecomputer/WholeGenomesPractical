@@ -1,4 +1,7 @@
 #!/bin/bash
 
-workdir="/panfs/panasas01/sscm/gh13047/repo/WholeGenomesPractical/scripts"
-datadir="/panfs/panasas01/shared/alspac/deprecated/pelotas_teaching_material/data/genotyped"
+# Put the current working directory path here:
+workdir=""
+
+# Put the location of the geno_qc.[bed|bim|fam] files here:
+datadir=""

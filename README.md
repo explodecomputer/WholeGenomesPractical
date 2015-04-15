@@ -46,6 +46,21 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 ## Exercises
 
+0.	First we need to setup the scripts to run on our server. First clone the repository:
+		
+		git clone git@github.com:explodecomputer/WholeGenomesPractical.git
+
+	This will take a few moments to download. Next, setup the `config` file to point the scripts to their location on the server and the location of the `geno_qc` files. Finally, put the `plink1.90` and `gcta64` binaries in the `~/bin` folder in your home directory:
+
+		mkdir -p ~/bin
+		cp WholeGenomesPractical/bin/* ~/bin
+
+	You should now be able to execute these two programmes by simply running:
+
+		gcta64
+		plink1.90
+
+
 1.	Scrutinise the data. Checking for:
 	- Clean genotype data
 	- Normally distributed phenotypes with no outliers
@@ -53,7 +68,7 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 2. 	Construct the genetic relationship matrix using the QC'd SNPs:
 
-        cd scripts
+        cd WholeGenomesPractical/scripts
         ./construct_grm.sh
 
 
