@@ -28,6 +28,7 @@ To see how this data was QC'd, take a look at the `scripts/qc_phen.R` script. Th
 
 We also have SNP genotypes for these individuals. Approx 500,000 markers on 23 chromosomes. 
 
+**Note: All the scripts and phenotype data used for this practical are in this repository. The genotype data can be made available upon request - just ask!**
 
 ## Using SNPs to estimate kinship
 
