@@ -51,7 +51,11 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 		
 		git clone git@github.com:explodecomputer/WholeGenomesPractical.git
 
-	This will take a few moments to download. Next, setup the `config` file to point the scripts to their location on the server and the location of the `geno_qc` files. Finally, put the `plink1.90` and `gcta64` binaries in the `~/bin` folder in your home directory:
+	This will take a few moments to download. Next, setup the `config` file to point the scripts to their location on the server and the location of the `geno_qc` files, e.g. using the `nano` programme to edit the file:
+	
+		nano WholeGenomesPractical/config
+	
+	Finally, put the `plink1.90` and `gcta64` binaries in the `~/bin` folder in your home directory:
 
 		mkdir -p ~/bin
 		cp WholeGenomesPractical/bin/* ~/bin
