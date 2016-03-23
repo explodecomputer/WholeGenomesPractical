@@ -21,30 +21,34 @@ source ../config
 # --thread        How many threads to use
 
 
+# NOTE
+# This analysis is being performed on pre-computed GRMs that are stored in the central data directory 
+# (see the ../config file for its location)
+
 
 # BMI vs CRP
 gcta64 \
-	--grm ../data/geno_qc \
+	--grm ${datadir}/geno_qc \
 	--reml-bivar 1 2 \
 	--pheno ../data/phen.txt \
 	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_bmi_crp \
-	--thread-num 16
+	--thread-num 4
 
 # BMI vs hypertension
 gcta64 \
-	--grm ../data/geno_qc \
+	--grm ${datadir}/geno_qc \
 	--reml-bivar 1 3 \
 	--pheno ../data/phen.txt \
 	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_bmi_hypertension \
-	--thread-num 16
+	--thread-num 4
 
 # CRP vs hypertension
 gcta64 \
-	--grm ../data/geno_qc \
+	--grm ${datadir}/geno_qc \
 	--reml-bivar 2 3 \
 	--pheno ../data/phen.txt \
 	--qcovar ../data/covs.txt \
 	--out ../results/bivariate_crp_hypertension \
-	--thread-num 16
+	--thread-num 4

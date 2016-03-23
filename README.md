@@ -8,7 +8,7 @@ This practical shows you how to perform various whole genome analyses using GCTA
 
 ## Background
 
-The use of very simple, single SNP approaches have actually been very successful in genetic studies. However, with the introduction of whole genome methods the scope of what we might be able to learn from genetic data has broadened significantly. Here we'll look at some of the fundamentals.
+The use of very simple, single SNP approaches have  been very successful in genetic studies. However, with the introduction of whole genome methods the scope of what we might be able to learn from genetic data has broadened significantly. Here we'll look at some of the fundamentals.
 
 The purpose of GWAS is to identify particular SNPs that we are certain have an influence on a trait. In contrast, the purpose of a GCTA style 'GREML' (Genetic REML) or 'SNP heritability' analysis is to estimate how much of the variance of the phenotype can be explained by all the measured SNPs in our data.
 
@@ -47,56 +47,41 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 ## Exercises
 
-0.	First we need to setup the scripts to run on our server. First clone the repository:
-		
-		git clone git@github.com:explodecomputer/WholeGenomesPractical.git
+0.	First we need to setup the scripts and programmes to run on our server. We will need Plink2, GCTA and git:
 
-	This will take a few moments to download. Next, setup the `config` file to point the scripts to their location on the server and the location of the `geno_qc` files, e.g. using the `nano` programme to edit the file:
-	
-		nano WholeGenomesPractical/config
-	
-	Finally, put the `plink1.90` and `gcta64` binaries in the `~/bin` folder in your home directory:
+        module add tools/git-1.8.4.2
+        module add apps/plink-1.90b3v
+        module add apps/gcta-1.24.3
 
-		mkdir -p ~/bin
-		cp WholeGenomesPractical/bin/* ~/bin
+    Check that you can run the programs, e.g. try typing `git`, `plink` and `gcta` and make sure that they can run.
 
-	You should now be able to execute these two programmes by simply running:
+1. Now we download the scripts by using git to clone the repository:
 
-		gcta64
-		plink1.90
+        git clone git@github.com:explodecomputer/WholeGenomesPractical.git
 
+	This will take a few moments to download. Once it's finished you can see that there is a new directory called `WholeGenomesPractical` by typing `ls -l`
 
-1.	Scrutinise the data. Checking for:
-	- Clean genotype data
-	- Normally distributed phenotypes with no outliers
-	- Presence of covariates including principal components
-
-2. 	Construct the genetic relationship matrix using the QC'd SNPs:
+2. We will now construct the genetic relationship matrix using the QC'd genotype data. Choose a chromosome to analyse, and then using a text editor such as `nano` modify the following file to analyse the chromosome that you are interested in:
 
         cd WholeGenomesPractical/scripts
-        ./construct_grm.sh
+        nano construct_grm_chr.sh
 
+    Change the line `CHR=""` to have your chromosome number e.g. `CHR="5"` for chromosome 5. Save and exit (`ctrl+x`, and then type `y` to save). Now execute the script:
+
+        ./construct_grm_chr.sh
+
+    - What is the algorithm doing?
 
 3. 	We have now calculated a genetic relationship value for every pair of individuals. If the sample comprises only 'unrelated' individuals then each pair of individuals should have a genetic relationship less than 0.05 (and a relationship with themselves of approximately 1). Use the `analyse_grm.R` script to read in the GRM files into R and plot the distribution of relationships:
 
 		R --no-save < analyse_grm.R
 
-	Why is it important to make sure that related individuals are not included in this analysis?
+	- Why is it important to make sure that related individuals are not included in this analysis?
+    - How might these graphs look different if you used the entire genome instead of just one chromosome to calculate relationships?
 
-4. 	Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each of the traits and how do the estimates differ when covariates are not included? Use the commands in `estimate_heritability.sh` to do this.
+4. 	Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each chromosome for BMI? Use the commands in `estimate_heritability.sh` to do this and plot them on the board.
+    - How does SNP heritability relate to chromosome size? Why?
+    - What is the danger of calculating SNP heritability **without fitting covariates**?
+    - What would happen if you calculated SNP heritability in a case control study, **where the cases and controls were genotyped in separate batches**?
 
-5. Recalculate the SNP heritability for hypertension but this time on the liability scale.
-
-6. 	In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in `estimate_bivariate.sh` to do this.
-
-7.	Under the infinitesimal model we assume that every SNP has an effect and each effect is small. One way we can test this would be to see if larger chromosomes explain more of the variance than smaller chromosomes. We can do this in GCTA by partitioning the genome into 22 chromosomes, and estimating the variance explained by all the SNPs on each chromosome. To do this first make a GRM for each of the 22 chromosomes:
-
-		./construct_grm_chr.sh
-
-	This script creates the 22 GRMs, plus a text file called `geno_qc_chr.mgrm` which lists the locations of each of the GRMs. Now we can estimate the variance attributed to each chromosome:
-
-		./estimate_partition.sh
-
-	Visualise the results by using the `plot_partition.R` script.
-
-8. 	Construct two GRMs, one using chromosomes 1-8 and another using 9-22. Estimate the heritability of each GRM separately and both combined. Do this with and without covariates included. Is the sum of heritabilities for each chromosome the same as that for the entire genome? Use the commands in `estimate_confounding.sh` to do this.
+5. 	In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in `estimate_bivariate.sh` to do this.

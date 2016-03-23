@@ -9,36 +9,33 @@
 source ../config
 
 
-# This script calculates the genetic relationship matrix
-# This involves calculating how similar each pair of individuals is across all SNPs in the data
+
+
+# This script calculates the genetic relationship matrix for a single chromosome
+# This involves calculating how similar each pair of individuals is across all SNPs on that chromosome
 # The result is an n x n matrix in binary format
-# 
+
+
+# Set chromosome here
+
+CHR=""
+
 # Probably takes about 5 minutes to run
 
 # --bfile         Location of genotype data
 # --make-grm-bin  Calculate GRM
 # --maf           Don't use SNPs below this MAF for calculating GRM
+# --chr           Which chromosome to analyse
 # --out           Where to save output
+# --thread-num    Number of CPU threads to parallelise
 
 
-for i in {1..22}
-do
-	plink1.90 \
-		--bfile ${datadir}/geno_qc \
-		--make-grm-bin \
-		--maf 0.01 \
-		--chr ${i} \
-		--out ../data/geno_qc_${i} \
-		--thread-num 16
-done
+plink1.90 \
+	--bfile ${datadir}/geno_qc \
+	--make-grm-bin \
+	--maf 0.01 \
+	--chr ${CHR} \
+	--out ../data/geno_qc \
+	--thread-num 4
 
-
-# Make mgrm file - this is supplied to GCTA to tell it where all the GRM files are that
-# are to be included in the multivariate analysis
-
-echo -e "../data/geno_qc_1" > ../data/geno_qc_chr.mgrm
-for i in {2..22}
-do
-	echo -e "../data/geno_qc_${i}" >> ../data/geno_qc_chr.mgrm
-done
 

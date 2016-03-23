@@ -34,7 +34,7 @@ gcta64 \
 	--mpheno 1 \
 	--qcovar ../data/covs.txt \
 	--out ../results/bmi_covar \
-	--thread-num 16
+	--thread-num 4
 
 gcta64 \
 	--grm ../data/geno_qc \
@@ -43,7 +43,7 @@ gcta64 \
 	--pheno ../data/phen.txt \
 	--mpheno 1 \
 	--out ../results/bmi_nocovar \
-	--thread-num 16
+	--thread-num 4
 
 
 # CRP
@@ -55,7 +55,7 @@ gcta64 \
 	--mpheno 2 \
 	--qcovar ../data/covs.txt \
 	--out ../results/crp_covar \
-	--thread-num 16
+	--thread-num 4
 
 gcta64 \
 	--grm ../data/geno_qc \
@@ -64,7 +64,7 @@ gcta64 \
 	--pheno ../data/phen.txt \
 	--mpheno 2 \
 	--out ../results/crp_nocovar \
-	--thread-num 16
+	--thread-num 4
 
 
 # Hypertension
@@ -76,7 +76,7 @@ gcta64 \
 	--mpheno 3 \
 	--qcovar ../data/covs.txt \
 	--out ../results/hypertension_covar \
-	--thread-num 16
+	--thread-num 4
 
 gcta64 \
 	--grm ../data/geno_qc \
@@ -85,7 +85,7 @@ gcta64 \
 	--pheno ../data/phen.txt \
 	--mpheno 3 \
 	--out ../results/hypertension_nocovar \
-	--thread-num 16
+	--thread-num 4
 
 
 
@@ -99,5 +99,5 @@ gcta64 \
 	--qcovar ../data/covs.txt \
 	--prevalence 0.3 \
 	--out ../results/hypertension_covar_liability \
-	--thread-num 16
+	--thread-num 4
 
