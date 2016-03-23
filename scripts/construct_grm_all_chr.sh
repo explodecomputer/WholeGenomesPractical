@@ -23,7 +23,7 @@ source ../config
 
 for i in {1..22}
 do
-	plink1.90 \
+	plink \
 		--bfile ${datadir}/geno_qc \
 		--make-grm-bin \
 		--maf 0.01 \

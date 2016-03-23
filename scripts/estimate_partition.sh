@@ -27,7 +27,7 @@ source ../config
 
 
 # BMI
-gcta64 \
+gcta \
 	--mgrm ../data/geno_qc_chr.mgrm \
 	--reml \
 	--reml-no-lrt \
@@ -39,7 +39,7 @@ gcta64 \
 	--thread-num 16
 
 # CRP
-gcta64 \
+gcta \
 	--mgrm ../data/geno_qc_chr.mgrm \
 	--reml \
 	--reml-no-lrt \
@@ -51,7 +51,7 @@ gcta64 \
 	--thread-num 16
 
 # Hypertension
-gcta64 \
+gcta \
 	--mgrm ../data/geno_qc_chr.mgrm \
 	--reml \
 	--reml-no-lrt \

@@ -20,7 +20,7 @@ source ../config
 # --maf           Don't use SNPs below this MAF for calculating GRM
 # --out           Where to save output
 
-plink1.90 \
+plink \
 	--bfile ${datadir}/geno_qc \
 	--make-grm-bin \
 	--maf 0.01 \

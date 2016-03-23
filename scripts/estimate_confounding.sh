@@ -36,7 +36,7 @@ source ../config
 awk '{ if ($1 < 9) print $2}' ${datadir}/geno_qc.bim > ../data/chr1-8.txt
 
 # Create GRM using SNPs only from chr1-8
-plink1.90 \
+plink \
 	--bfile ${datadir}/geno_qc \
 	--make-grm-bin \
 	--maf 0.01 \
@@ -44,7 +44,7 @@ plink1.90 \
 	--out ../data/geno_1-8
 
 # Create GRM using SNPs only from chr9-22
-plink1.90 \
+plink \
 	--bfile ${datadir}/geno_qc \
 	--make-grm-bin \
 	--maf 0.01 \
@@ -62,7 +62,7 @@ echo -e "${workdir}/whole_genome/data/geno_1-8\n${workdir}/whole_genome/data/gen
 # This can be used as a test to see if pop strat is being accounted for.
 
 # BMI with covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -72,7 +72,7 @@ gcta64 \
 	--out ../results/partition1_bmi_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -82,7 +82,7 @@ gcta64 \
 	--out ../results/partition2_bmi_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
@@ -93,7 +93,7 @@ gcta64 \
 	--thread-num 8
 
 # BMI without covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -102,7 +102,7 @@ gcta64 \
 	--out ../results/partition1_bmi_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -111,7 +111,7 @@ gcta64 \
 	--out ../results/partition2_bmi_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
@@ -122,7 +122,7 @@ gcta64 \
 
 
 # CRP with covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -132,7 +132,7 @@ gcta64 \
 	--out ../results/partition1_crp_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -142,7 +142,7 @@ gcta64 \
 	--out ../results/partition2_crp_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
@@ -153,7 +153,7 @@ gcta64 \
 	--thread-num 8
 
 # CRP without covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -162,7 +162,7 @@ gcta64 \
 	--out ../results/partition1_crp_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -171,7 +171,7 @@ gcta64 \
 	--out ../results/partition2_crp_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
@@ -181,7 +181,7 @@ gcta64 \
 	--thread-num 8
 
 # Hypertension with covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -191,7 +191,7 @@ gcta64 \
 	--out ../results/partition1_hypertension_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -201,7 +201,7 @@ gcta64 \
 	--out ../results/partition2_hypertension_covar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
@@ -212,7 +212,7 @@ gcta64 \
 	--thread-num 8
 
 # Hypertension without covariates
-gcta64 \
+gcta \
 	--grm ../data/geno_1-8 \
 	--reml \
 	--reml-no-lrt \
@@ -221,7 +221,7 @@ gcta64 \
 	--out ../results/partition1_hypertension_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--grm ../data/geno_9-22 \
 	--reml \
 	--reml-no-lrt \
@@ -230,7 +230,7 @@ gcta64 \
 	--out ../results/partition2_hypertension_nocovar \
 	--thread-num 8
 
-gcta64 \
+gcta \
 	--mgrm ../data/mgrm.txt \
 	--reml \
 	--reml-no-lrt \
