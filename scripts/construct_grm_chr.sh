@@ -30,7 +30,7 @@ CHR=""
 # --thread-num    Number of CPU threads to parallelise
 
 
-plink1.90 \
+plink \
 	--bfile ${datadir}/geno_qc \
 	--make-grm-bin \
 	--maf 0.01 \

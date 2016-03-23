@@ -26,7 +26,7 @@ source ../config
 
 
 # BMI
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -36,7 +36,7 @@ gcta64 \
 	--out ../results/bmi_covar \
 	--thread-num 4
 
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -47,7 +47,7 @@ gcta64 \
 
 
 # CRP
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -57,7 +57,7 @@ gcta64 \
 	--out ../results/crp_covar \
 	--thread-num 4
 
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -68,7 +68,7 @@ gcta64 \
 
 
 # Hypertension
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -78,7 +78,7 @@ gcta64 \
 	--out ../results/hypertension_covar \
 	--thread-num 4
 
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \
@@ -90,7 +90,7 @@ gcta64 \
 
 
 # Hypertension - liability scale
-gcta64 \
+gcta \
 	--grm ../data/geno_qc \
 	--reml \
 	--reml-no-lrt \

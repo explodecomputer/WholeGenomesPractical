@@ -27,7 +27,7 @@ source ../config
 
 
 # BMI vs CRP
-gcta64 \
+gcta \
 	--grm ${datadir}/geno_qc \
 	--reml-bivar 1 2 \
 	--pheno ../data/phen.txt \
@@ -36,7 +36,7 @@ gcta64 \
 	--thread-num 4
 
 # BMI vs hypertension
-gcta64 \
+gcta \
 	--grm ${datadir}/geno_qc \
 	--reml-bivar 1 3 \
 	--pheno ../data/phen.txt \
@@ -45,7 +45,7 @@ gcta64 \
 	--thread-num 4
 
 # CRP vs hypertension
-gcta64 \
+gcta \
 	--grm ${datadir}/geno_qc \
 	--reml-bivar 2 3 \
 	--pheno ../data/phen.txt \
