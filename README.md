@@ -52,7 +52,8 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
         module add tools/git-1.8.4.2
         module add apps/plink-1.90b3v
         module add apps/gcta-1.24.3
-
+        module add languages/R-3.2.4-ATLAS
+        
     Check that you can run the programs, e.g. try typing `git`, `plink` and `gcta` and make sure that they can run.
 
 1. Now we download the scripts by using git to clone the repository:
