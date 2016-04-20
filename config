@@ -4,4 +4,4 @@
 workdir="${HOME}/WholeGenomesPractical/"
 
 # Put the location of the geno_qc.[bed|bim|fam] files here:
-datadir="/projects/MRC-IEU/groups/ieuteaching/Genetic_short_course_2016/pract9_WholeGenomes/data/"
+datadir="${HOME}/pract9_WholeGenomes/data/"
