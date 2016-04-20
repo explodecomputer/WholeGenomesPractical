@@ -57,7 +57,7 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 1. Now we download the scripts by using git to clone the repository:
 
-        git clone git@github.com:explodecomputer/WholeGenomesPractical.git
+        git clone https://github.com/explodecomputer/WholeGenomesPractical.git
 
 	This will take a few moments to download. Once it's finished you can see that there is a new directory called `WholeGenomesPractical` by typing `ls -l`
 
