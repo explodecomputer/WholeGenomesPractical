@@ -20,6 +20,15 @@ The SNP heritability is estimated using a two step procedure. First a genetic co
 The original implementation for large scale human data is [GCTA](http://www.complextraitgenomics.com/software/gcta/). It is continually improving, and it has a huge number of features. We will use this to perform REML estimation of heritabilities. It also constructs genetic relationship matrices, which is something that we need, but we will use [Plink2](https://www.cog-genomics.org/plink2/) to do this, as it does the same implementation but much faster.
 
 
+### Logging in to the server
+
+Log into bluecrystal using PuTTY. Run the following command to access a compute node:
+
+```
+qsub ‐I ‐q teaching ‐l nodes=1:ppn=1,walltime=02:00:00
+```
+
+
 ## Data
 
 We have body mass index (BMI), C-reactive protein (CRP) levels, and hypertension case control status data on each of around 8000 individuals. This is located in `data/phen.txt` We also have covariates, including the first 10 genetic principal components, age, sex, and smoking status (`data/covs.txt`).
