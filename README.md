@@ -25,7 +25,7 @@ The original implementation for large scale human data is [GCTA](http://www.comp
 Log into bluecrystal using PuTTY. Run the following command to access a compute node:
 
 ```
-qsub ‐I ‐q teaching ‐l nodes=1:ppn=1,walltime=02:00:00
+qsub -I -q teaching -l nodes=1:ppn=1,walltime=02:00:00
 ```
 
 
