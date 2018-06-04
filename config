@@ -4,4 +4,4 @@
 workdir="${HOME}/WholeGenomesPractical/"
 
 # Put the location of the geno_qc.[bed|bim|fam] files here:
-datadir="${HOME}/pract9_WholeGenomes/data/"
+datadir="/panfs/panasas01/sscm/shortcourse/genetic.epidemiology/pract7_WholeGenomes/data/"
