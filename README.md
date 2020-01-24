@@ -28,15 +28,6 @@ The SNP heritability is estimated using a two step procedure. First a genetic co
 
 The original implementation for large scale human data is [GCTA](http://www.complextraitgenomics.com/software/gcta/). It is continually improving, and it has a huge number of features. We will use this to perform REML estimation of heritabilities. It also constructs genetic relationship matrices, which is something that we need, but we will use [Plink2](https://www.cog-genomics.org/plink2/) to do this, as it does the same implementation but much faster.
 
-
-### Logging in to the server
-
-Log into bluecrystal using PuTTY. Run the following command to access a compute node:
-
-```
-qsub -I -q teaching -l nodes=1:ppn=1,walltime=02:00:00
-```
-
 * * *
 
 ## Data
@@ -66,6 +57,8 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 ## Exercises
 
+Once you have logged in to the server, go through the following steps
+
 0.	First we need to setup the scripts and programmes to run on our server. We will need Plink2, GCTA and git:
 
         module add tools/git-2.18.0
@@ -81,7 +74,13 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
 
 	This will take a few moments to download. Once it's finished you can see that there is a new directory called `WholeGenomesPractical` by typing `ls -l`
 
-2. We will now construct the genetic relationship matrix using the QC'd genotype data. Choose a chromosome to analyse, and then using a text editor such as `nano` modify the following file to analyse the chromosome that you are interested in:
+2. Logging in to the server
+
+    You are currently in the head node and shouldn't run analysis there. Run the following command to access a compute node:
+        
+        qsub -I -q teaching -l nodes=1:ppn=1,walltime=02:00:00
+
+3. We will now construct the genetic relationship matrix using the QC'd genotype data. Choose a chromosome to analyse, and then using a text editor such as `nano` modify the following file to analyse the chromosome that you are interested in:
 
         cd WholeGenomesPractical/scripts
         nano construct_grm_chr.sh
@@ -91,32 +90,17 @@ When genetic similarity is calculated by using SNPs then we are no longer estima
         ./construct_grm_chr.sh
 
     - What is the algorithm doing?
-        
-        > We are estimating the genetic similarity between each pair of individuals. This is based on average numbers of shared alleles for every SNP on the chromosome being analysed.
 
-3. 	We have now calculated a genetic relationship value for every pair of individuals. If the sample comprises only 'unrelated' individuals then each pair of individuals should have a genetic relationship less than 0.05 (and a relationship with themselves of approximately 1). Use the `analyse_grm.R` script to read in the GRM files into R and plot the distribution of relationships:
+4. 	We have now calculated a genetic relationship value for every pair of individuals. If the sample comprises only 'unrelated' individuals then each pair of individuals should have a genetic relationship less than 0.05 (and a relationship with themselves of approximately 1). Use the `analyse_grm.R` script to read in the GRM files into R and plot the distribution of relationships:
 
 		R --no-save < analyse_grm.R
 
 	- Why is it important to make sure that related individuals are not included in this analysis?
-        
-        > We are estimating SNP heritability. The genetic similarity of related individuals includes all variants not just common SNPs captured on the SNP chip. It also correlates with common environment, so the estimate will be biased towards full heritability + common environment effects.
- 
     - How might these graphs look different if you used the entire genome instead of just one chromosome to calculate relationships?
-        
-        > The variance would be lower because we are obtaining a more precise estimate of kinship by incorporating information from many more SNPs
 
-4. 	Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each chromosome for BMI? Use the commands in `estimate_heritability.sh` to do this and plot them on the board.
+5. 	Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each chromosome for BMI? Use the commands in `estimate_heritability.sh` to do this and plot them on the board.
     - How does SNP heritability relate to chromosome size? Why?
-    
-        > Larger chromosomes have higher heritability because under the infinitestimal model they have more causal variants
-
     - What is the danger of calculating SNP heritability **without fitting covariates**?
-    
-        > Confounding from population stratification will inflate the extent to which genetic similarity associates with phenotypic similarity
-        
     - What would happen if you calculated SNP heritability in a case control study, **where the cases and controls were genotyped in separate batches**?
-    
-        > The technical batch effects would make cases look much more similar to cases than to controls. As a consequence the heritability would be inflated because individuals with the same phenotype would be estimated to be more genetically similar
 
-5. 	In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in `estimate_bivariate.sh` to do this.
+6. 	In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in `estimate_bivariate.sh` to do this.

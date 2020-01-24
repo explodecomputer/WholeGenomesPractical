@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Gibran Hemani" />
@@ -255,9 +256,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -271,30 +270,90 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -304,53 +363,49 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Whole genome methods practical</h1>
-<h4 class="author"><em>Gibran Hemani</em></h4>
-<h4 class="date"><em>04 June, 2018</em></h4>
+<h4 class="author">Gibran Hemani</h4>
+<h4 class="date"><code>r format(Sys.time(), &#39;%d %B, %Y&#39;)</code></h4>
 
 </div>
 
 
 <hr />
 <p>This practical shows you how to perform various whole genome analyses using GCTA on plink format data. It will be run on a linux server. All the scripts are available for you to download here:</p>
-<p><a href="https://github.com/explodecomputer/WholeGenomesPractical" class="uri">https://github.com/explodecomputer/WholeGenomesPractical</a></p>
+<p><a href="https://github.com/explodecomputer/WholeGenomesPractical">https://github.com/explodecomputer/WholeGenomesPractical</a></p>
 <hr />
-<section id="background" class="level2">
+<div id="background" class="section level2">
 <h2>Background</h2>
 <p>The use of very simple, single SNP approaches have been very successful in genetic studies. However, with the introduction of whole genome methods the scope of what we might be able to learn from genetic data has broadened significantly. Here we’ll look at some of the fundamentals.</p>
 <p>The purpose of GWAS is to identify particular SNPs that we are certain have an influence on a trait. In contrast, the purpose of a GCTA style ‘GREML’ (Genetic REML) or ‘SNP heritability’ analysis is to estimate how much of the variance of the phenotype can be explained by all the measured SNPs in our data.</p>
 <p>The SNP heritability is estimated using a two step procedure. First a genetic covariance matrix, or genetic relationship matrix (GRM) is estimated. This is an <em>n</em> x <em>n</em> matrix where each element represents the genetic similarity of two individuals. The second step performs REML analysis to essentially estimate how much of the phenotypic covariance in the population is attributable to genetic covariance.</p>
-</section>
-<section id="a-note-about-software" class="level2">
+</div>
+<div id="a-note-about-software" class="section level2">
 <h2>A note about software</h2>
 <p>The original implementation for large scale human data is <a href="http://www.complextraitgenomics.com/software/gcta/">GCTA</a>. It is continually improving, and it has a huge number of features. We will use this to perform REML estimation of heritabilities. It also constructs genetic relationship matrices, which is something that we need, but we will use <a href="https://www.cog-genomics.org/plink2/">Plink2</a> to do this, as it does the same implementation but much faster.</p>
-<section id="logging-in-to-the-server" class="level3">
-<h3>Logging in to the server</h3>
-<p>Log into bluecrystal using PuTTY. Run the following command to access a compute node:</p>
-<pre><code>qsub -I -q teaching -l nodes=1:ppn=1,walltime=02:00:00</code></pre>
 <hr />
-</section>
-</section>
-<section id="data" class="level2">
+</div>
+<div id="data" class="section level2">
 <h2>Data</h2>
 <p>We have body mass index (BMI), C-reactive protein (CRP) levels, and hypertension case control status data on each of around 8000 individuals. This is located in <code>data/phen.txt</code> We also have covariates, including the first 10 genetic principal components, age, sex, and smoking status (<code>data/covs.txt</code>).</p>
 <p>To see how this data was QC’d, take a look at the <code>scripts/qc_phen.R</code> script. The figures generated from this script are in the <code>images/</code> folder.</p>
 <p>We also have SNP genotypes for these individuals. Approx 500,000 markers on 23 chromosomes.</p>
 <p><strong>Note: All the scripts and phenotype data used for this practical are in this repository. The genotype data can be made available upon request - just ask!</strong></p>
-</section>
-<section id="using-snps-to-estimate-kinship" class="level2">
+</div>
+<div id="using-snps-to-estimate-kinship" class="section level2">
 <h2>Using SNPs to estimate kinship</h2>
 <p>How far removed must two individuals be from one another before they are considered ‘unrelated’? We can make estimates of the proportion of the genome that is shared identical by descent (IBD) between all pairs of seemingly unrelated individuals from the population by calculating the proportion of SNPs that are identical by state (IBS).</p>
 <p>The result is a genetic relationship matrix (GRM, aka kinship matrix) of size <em>n</em> x <em>n</em>, diagonals are estimates of an individual’s inbreeding and off-diagonals are an estimate of genomic similarity for pairs of individuals.</p>
-</section>
-<section id="using-kinships-to-estimate-heritability" class="level2">
+</div>
+<div id="using-kinships-to-estimate-heritability" class="section level2">
 <h2>Using kinships to estimate heritability</h2>
 <p>See slides for more accurate treatment, but the intuition is as follows. Heritability is the measure of the proportion of variation that is due to genetic variation. If individuals who are more phenotypically similar also tend to be more genetically similar then this is evidence that heritability is non-zero. We can make estimates of heritability by comparing these similarities.</p>
 <p>When genetic similarity is calculated by using SNPs then we are no longer estimating heritability per se, we are instead estimating how much of the phenotypic variance can be explained by all the SNPs in our model.</p>
 <hr />
-</section>
-<section id="exercises" class="level2">
+</div>
+<div id="exercises" class="section level2">
 <h2>Exercises</h2>
-<ol start="0" type="1">
+<p>Once you have logged in to the server, go through the following steps</p>
+<ol start="0" style="list-style-type: decimal">
 <li><p>First we need to setup the scripts and programmes to run on our server. We will need Plink2, GCTA and git:</p>
 <pre><code>module add tools/git-2.18.0
 module add apps/plink-1.90b3v
@@ -360,10 +415,13 @@ module add languages/R-3.2.4-ATLAS</code></pre>
 <li><p>Now we download the scripts by using git to clone the repository:</p>
 <pre><code> git clone https://github.com/explodecomputer/WholeGenomesPractical.git</code></pre>
 <p>This will take a few moments to download. Once it’s finished you can see that there is a new directory called <code>WholeGenomesPractical</code> by typing <code>ls -l</code></p></li>
+<li><p>Logging in to the server</p>
+<p>You are currently in the head node and shouldn’t run analysis there. Run the following command to access a compute node:</p>
+<pre><code> qsub -I -q teaching -l nodes=1:ppn=1,walltime=02:00:00</code></pre></li>
 <li><p>We will now construct the genetic relationship matrix using the QC’d genotype data. Choose a chromosome to analyse, and then using a text editor such as <code>nano</code> modify the following file to analyse the chromosome that you are interested in:</p>
 <pre><code> cd WholeGenomesPractical/scripts
  nano construct_grm_chr.sh</code></pre>
-<p>Change the line <code>CHR=&quot;&quot;</code> to have your chromosome number e.g. <code>CHR=&quot;5&quot;</code> for chromosome 5. Save and exit (<code>ctrl+x</code>, and then type <code>y</code> to save). Now execute the script:</p>
+<p>Change the line <code>CHR=&quot;&quot;</code> to have your chromosome number e.g. <code>CHR=&quot;5&quot;</code> for chromosome 5. Save and exit (<code>ctrl+x</code>, and then type <code>y</code> to save). Now execute the script:</p>
 <pre><code> ./construct_grm_chr.sh</code></pre>
 <ul>
 <li>What is the algorithm doing?</li>
@@ -374,7 +432,7 @@ module add languages/R-3.2.4-ATLAS</code></pre>
 <li>Why is it important to make sure that related individuals are not included in this analysis?</li>
 <li>How might these graphs look different if you used the entire genome instead of just one chromosome to calculate relationships?</li>
 </ul></li>
-<li>Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each chromosome for BMI? Use the commands in <code>estimate_heritability.sh</code> to do this and plot them on the board.
+<li><p>Calculate SNP heritabilities with and without covariates. What are the SNP heritabilities for each chromosome for BMI? Use the commands in <code>estimate_heritability.sh</code> to do this and plot them on the board.</p>
 <ul>
 <li>How does SNP heritability relate to chromosome size? Why?</li>
 <li>What is the danger of calculating SNP heritability <strong>without fitting covariates</strong>?</li>
@@ -382,7 +440,7 @@ module add languages/R-3.2.4-ATLAS</code></pre>
 </ul></li>
 <li><p>In addition to estimating the SNP heritability of each trait, we can calculate how similar the genetic effects are for a pair of traits. This is also known as the genetic correlation. Perform bivariate GREML analysis to calculate genetic correlations between each pair of traits. Use the commands in <code>estimate_bivariate.sh</code> to do this.</p></li>
 </ol>
-</section>
+</div>
 
 
 
@@ -401,6 +459,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
