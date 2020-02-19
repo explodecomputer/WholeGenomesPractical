@@ -1,7 +1,7 @@
 ---
 title: Whole genome methods practical
 author: Gibran Hemani
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "19 February 2020"
 output: 
     html_document: default
     pdf_document: default
